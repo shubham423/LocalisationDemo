@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">LocalisationDemo</string>
+    <string name="my_first_text">Two artists had an art contest. It ended in a draw!</string>
+    <string name="my_second_text">What did one traffic light say to the other? Stop looking at me, I m changing!</string>
+    <string name="my_third_text">Why do French people eat snails? They dont like fast food!</string>
+    <string name="my_four_text">Why did the gym close down? It just didnt work out!</string>
+    <string name="my_fifth_text">I have a fear of speed bumps. But I am slowly getting over it</string>
+</resources>

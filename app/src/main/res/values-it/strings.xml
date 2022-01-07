@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LocalisationDemo</string>
+    <string name="my_first_text">Due artisti hanno organizzato un concorso artistico. Finì in pareggio!</string>
+    <string name="my_second_text">Che cosa ha detto un semaforo allaltro? Smettila di guardarmi, sto cambiando!</string>
+    <string name="my_third_text">Perché i francesi mangiano le lumache? Non amano il fast food!</string>
+    <string name="my_four_text">Perché la palestra ha chiuso? Semplicemente non ha funzionato!</string>
+    <string name="my_fifth_text">Ho paura dei dossi. Ma piano piano lo sto superando</string>
+</resources>
