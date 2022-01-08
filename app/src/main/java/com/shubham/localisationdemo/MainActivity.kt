@@ -4,14 +4,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.AdapterView
-import android.widget.Toast
-import android.widget.Spinner
 import com.shubham.localisationdemo.databinding.ActivityMainBinding
-import android.app.Activity
-import android.content.ContextWrapper
 import android.content.Intent
-import android.content.res.Configuration
-import android.content.res.Resources
+import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
 import java.util.*
 
 
@@ -23,28 +19,45 @@ class MainActivity : AppCompatActivity() {
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val position = intent.getIntExtra("pos",0)
+        Log.d("Main", "onCreate: $position")
         setupCustomSpinner()
+
+
         binding.customSpinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
+                binding.customSpinner.setSelection(position)
+
                 when(position){
                     1->{
-                        setLocale("it")
+                        setLocale("it",position)
                     }
                     2->{
-                        setLocale("es")
+                        setLocale("es",position)
                     }
                     3->{
-                        setLocale("de")
+                        setLocale("de",position)
                     }
                     4->{
-                        setLocale("en")
+                        setLocale("en",position)
                     }
                 }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // Use as per your wish
+            }
+        }
+
+        binding.switch1.setOnCheckedChangeListener { _, isChecked ->
+            if (binding.switch1.isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                binding.jokesHeadingTv.setTextColor(resources.getColor(R.color.white))
+                binding.switch1.text = "Disable dark mode"
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                binding.switch1.text = "Enable dark mode"
             }
         }
     }
@@ -56,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun setLocale( languageCode: String) {
+    fun setLocale(languageCode: String, position: Int) {
         locale = Locale(languageCode)
         var res=resources
         var dm=res.displayMetrics
@@ -65,9 +78,8 @@ class MainActivity : AppCompatActivity() {
         res.updateConfiguration(conf,dm)
 
         var selfIntent=Intent(this,MainActivity::class.java)
-        startActivity(selfIntent).also {
-            finish()
-        }
+        selfIntent.putExtra("pos",position)
+        startActivity(selfIntent)
 
     }
 }
